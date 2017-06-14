@@ -1,75 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<style type="text/css">
-			body {
-				padding: 0;
-				margin: 0;
-			}
-			
-			.component {
-				height: 50%;
-				width: 30%;
-				background-color: #eee;
-				margin-bottom: 30px;
-				display: none;
-			}
-		</style>
 	</head>
-
 	<body>
-		<!--用于验证fullpage.js-->
-		<div id="h5">
-			<div id="page-1" class="page section">
-				<div class="component logo">logo</div>
-				<div class="component  solgan">slogan</div>
-			</div>
-			<div id="page-2" class="page section">
-				<div class="component  desc">desc</div>
-
-			</div>
-			<div id="page-3" class="page section">
-				<div class="component   foot">foot</div>
-			</div>
-		</div>
-		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
-		<script src="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.js"></script>
-		<script>
-			$(function() {
-				$('#h5').fullpage({
-					'sectionsColor': ['red', 'blue', 'green'],
-					onLeave: function(index, nextIndex, direction) {
-						$('#h5').find('.page').eq(index-1).trigger('onLeave');
-					},
-					afterLoad: function(anchorLink, index) {
-						$('#h5').find('.page').eq(index-1).trigger('onLoad');
-					}
-				});
-				$('.page').on('onLoad',function(){
-					console.log($(this).attr('id'),'===> onLoad');
-					$(this).find('.component').trigger('onLoad');
-				});
-				$('.page').on('onLeave',function(){
-					console.log($(this).attr('id'),'===> onLeave');
-					$(this).find('.component').trigger('onLeave');
-					
-				});
-				$('.component').on('onLoad',function(){
-					$(this).fadeIn();
-					return false;
-				});
-				$('.component').on('onLeave',function(){
-					$(this).fadeOut();
-					return false;
-				});
-				
-			})
-		</script>
 	</body>
-
 </html>
