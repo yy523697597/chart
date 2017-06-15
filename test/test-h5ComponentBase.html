@@ -42,12 +42,30 @@
 				bg: '../img/1.jpg',
 				css: {
 					top: 100,
-					left: 100
+					opacity: 0
 				},
-				center: true
+				center: true,
+				animateIn: {
+					opacity: 1,
+					top: 50
+				},
+				animateOut: {
+					opacity: 0,
+					top: 0
+				}
 			};
 			var H5 = new H5ComponentBase('myName', cfg);
 			$('.content').append(H5);
+			var onLoad = false;
+			$('body').click(function() {
+				onLoad = !onLoad;
+				if(onLoad) {
+					$('.h5-component').trigger('onLoad');
+				} else {
+					$('.h5-component').trigger('onLeave');
+				}
+
+			});
 		</script>
 	</body>
 
