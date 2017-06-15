@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="../css/h5ComponentBase.css"/>
-		<script src="../js/h5ComponentBase.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/h5ComponentBase.css" />
+
 		<style type="text/css">
-			body{
+			body {
 				padding: 0;
 				margin: 0;
 				background-color: #000;
 				font-size: 12px;
 			}
-			.content{
+			
+			.content {
 				height: 540px;
 				width: 340px;
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate(-50%,-50%);
+				transform: translate(-50%, -50%);
 				background-color: #fff;
 				color: #222;
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="content">
-			
+
 		</div>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="../js/h5ComponentBase.js"></script>
+		<script type="text/javascript">
+			var cfg = {
+				type: 'base',
+				text: '',
+				width: 544,
+				height: 428,
+				bg: '../img/1.jpg',
+				css: {
+					top: 100,
+					left: 100
+				},
+				center: true
+			};
+			var H5 = new H5ComponentBase('myName', cfg);
+			$('.content').append(H5);
+		</script>
 	</body>
+
 </html>
