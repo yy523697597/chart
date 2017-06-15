@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/h5.css" />
+		<link rel="stylesheet" type="text/css" href="../css/h5ComponentBase.css" />
+		<title></title>
+
+	</head>
+
+	<body>
+
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.js"></script>
+		<script src="../js/h5.js"></script>
+		<script src="../js/h5ComponentBase.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var h5 = new H5();
+
+			h5.addPage('face', '首页')
+				.addComponent('f1', {
+					type: 'base',
+					text: '第一张',
+					css: {
+						backgroundColor: 'red',
+						color: '#ccc',
+						top: 100,
+						opacity:0
+					},
+					center: true,
+					animateIn: {
+						opacity: 1,
+						top: 200
+					},
+					animateOut: {
+						opacity: 0,
+						top: 100
+					}
+				})
+				.addComponent('f2', {
+					type: 'base',
+					text: '第2张',
+					css: {
+						backgroundColor: 'green',
+						color: '#ccc',
+						top: 200,
+						opacity:0
+					},
+					center: true,
+					animateIn: {
+						opacity: 1,
+						top: 300
+					},
+					animateOut: {
+						opacity: 0,
+						top: 200
+					}
+				})
+				.addPage('second', '课程介绍')
+				.addComponent('s1', {
+					type: 'base',
+					text: '第3张',
+					css: {
+						backgroundColor: 'blue',
+						color: '#ccc',
+						top: 100,
+						opacity:0
+					},
+					center: true,
+					animateIn: {
+						opacity: 1,
+						top: 200
+					},
+					animateOut: {
+						opacity: 0,
+						top: 100
+					}
+				})
+				.loader();
+		</script>
+	</body>
+
+</html>
