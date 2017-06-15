@@ -1,0 +1,12 @@
+.h5-component-point{
+	background-size:100% ;
+	background-repeat: no-repeat;
+	position: absolute;
+}
+.h5-component-point .point{
+	display: block;
+	background-color: #ccc;
+	opacity: 1;
+	margin-bottom: 10px;
+	border-radius: 50%;
+}
