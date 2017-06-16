@@ -1,0 +1,14 @@
+/*折线图组件样式*/
+
+.h5-component-polyline{
+	
+}
+.h5-component-polyline canvas {
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    /*canvas绘图需要设置z-index进行分层*/
+    /*z-index: 0; */
+ }
