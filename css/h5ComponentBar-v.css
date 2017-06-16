@@ -6,23 +6,27 @@
     justify-content: space-around;
 }
 .h5-component-bar-v .line{
+    width: 40px;
     font-size: 12px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    text-align: center;
 }
 .h5-component-bar-v .name{
     color: #333;    
 }
 .h5-component-bar-v .rate{ 
-	
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 5px;
 }
 .h5-component-bar-v .rate .bg{ 
 	background-color: yellowgreen;
     /*transition: all 1s .5s;*/
     border-radius: 2px;
     height: 0%;
-    /*float: right;*/
 }
 .h5-component-bar-v .per{
     /*第三个参数是延迟时间*/
