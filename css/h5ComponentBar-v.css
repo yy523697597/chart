@@ -1,56 +1,54 @@
 /*柱状图组件样式*/
 
-.h5-component-bar{
+.h5-component-bar-v{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.h5-component-bar-v .line{
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.h5-component-bar-v .name{
+    color: #333;    
+}
+.h5-component-bar-v .rate{ 
 	
 }
-.h5-component-bar .line{
-    height: 15px;
-    font-size: 12px;
-    line-height: 15px;
-    margin-bottom: 15px;
-}
-.h5-component-bar .name{
-	width: 60px;
-    float: left;
-    color: #333;
-    text-align: right;
-    position: absolute;
-    left: -60px;
-}
-.h5-component-bar .rate{ 
-	height: 15px;
-    margin-left: 5px;
-    float: left;
-    position: relative;
-}
-.h5-component-bar .rate .bg{ 
+.h5-component-bar-v .rate .bg{ 
 	background-color: yellowgreen;
-    height: 100%;
-    width: 0%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 1s .5s;
+    /*transition: all 1s .5s;*/
     border-radius: 2px;
+    height: 0%;
+    /*float: right;*/
 }
-.h5-component-bar .per{
+.h5-component-bar-v .per{
     /*第三个参数是延迟时间*/
     transition: all 1s 1.5s;
-    width: 20px;
-    height: 15px;
-    float: left;
-    margin-left: 5px;
     opacity: 0;
 }
-.h5-component-bar-onload .rate .bg{
-    width: 100%;
+.h5-component-bar-v-onload .rate .bg{
+animation: bigger 1s ease .5s;
+animation-fill-mode :forwards;
+
 }
-.h5-component-bar-onleave .rate .bg{
-    width: 0%;
+.h5-component-bar-v-onleave .rate .bg{
+    animation: smaller 1s ease;
+animation-fill-mode :forwards;    
 }
-.h5-component-bar-onload .per{
+.h5-component-bar-v-onload .per{
     opacity: 1;
 }
-.h5-component-bar-onleave .per{
-opacity: 0;
+.h5-component-bar-v-onleave .per{
+    opacity: 0;
+}
+@keyframes bigger {
+    from{height: 0%;opacity: 0;}
+    to{height: 100%;opacity: 1;}
+}
+@keyframes smaller{
+    from{height: 100%;opacity: 1;}
+    to{height: 0%;opacity:0;}
 }
