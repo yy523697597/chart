@@ -1,7 +1,7 @@
 /*折线图组件样式*/
 
 .h5-component-polyline{
-	
+	opacity: 1!important;
 }
 .h5-component-polyline canvas {
     position: absolute;
