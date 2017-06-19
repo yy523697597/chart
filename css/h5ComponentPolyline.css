@@ -12,3 +12,11 @@
     /*canvas绘图需要设置z-index进行分层*/
     /*z-index: 0; */
  }
+ .h5-component-polyline .text{
+     font-size: 12px;
+     position: absolute;
+     height: 20px;
+     bottom: -20px;
+     line-height: 20px;
+     text-align: center;
+ }

@@ -66,6 +66,12 @@ var H5ComponentPolyline = function (name, cfg) {
 		x = w / (stepx2 + 1) * (index + 1);
 		y = h * (1 - val[1]);
 		ctx2.lineTo(x, y);
+		var text = $('<div class="text"></div>');
+		var width = w / ((stepx2 + 1) * 2);
+		text.css('width', width);
+		text.css('left', width * (index + 1) - width / 2);
+		text.text(val[0]);
+		component.append(text);
 	});
 	ctx2.stroke();
 
