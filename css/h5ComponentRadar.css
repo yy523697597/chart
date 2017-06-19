@@ -1,0 +1,8 @@
+/*雷达图组件样式*/
+
+.h5-component-onLoad .text{
+     opacity: 1;
+ }
+ .h5-component-onLeave .text{
+     opacity: 0;
+ }
