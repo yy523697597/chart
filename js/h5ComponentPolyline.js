@@ -57,6 +57,8 @@ var H5ComponentPolyline = function (name, cfg) {
 			ctx2.moveTo(x, y);
 			//画点
 			ctx2.arc(x, y, 5, 0, Math.PI * 2, false);
+			// 文字大小
+			ctx2.font = '24px sans-serif';
 			//文字样式
 			ctx2.fillStyle = val[2] ? val[2] : '#333';
 			//添加文字
