@@ -1,5 +1,5 @@
 //折线图件对象
-var H5ComponentPolyline = function(name, cfg) {
+var H5ComponentPolyline = function (name, cfg) {
 	var component = new H5ComponentBase(name, cfg);
 	var w = cfg.width;
 	var h = cfg.height;
@@ -36,7 +36,6 @@ var H5ComponentPolyline = function(name, cfg) {
 	ctx.stroke();
 	component.append(cns);
 
-
 	//开始绘制折线--数据层
 	var cns2 = document.createElement('canvas');
 	var ctx2 = cns2.getContext('2d');
@@ -46,10 +45,10 @@ var H5ComponentPolyline = function(name, cfg) {
 	cns2.width = ctx2.width = w;
 	var stepx2 = cfg.data.length;
 	ctx2.beginPath();
-	ctx2.lineWidth = 1;
+	ctx2.lineWidth = 3;
 	//折线颜色
 	ctx2.strokeStyle = '#ff8878';
-	cfg.data.forEach(function(val, index) {
+	cfg.data.forEach(function (val, index) {
 		var x = w / (stepx2 + 1) * (index + 1);
 		var y = h * (1 - val[1]);
 		ctx2.moveTo(x, y);
@@ -60,14 +59,26 @@ var H5ComponentPolyline = function(name, cfg) {
 		//添加文字
 		ctx2.fillText((val[1] * 100) + '%', x - 10, y - 20);
 	});
+
 	//画折线,先移动到第一个点
 	ctx2.moveTo(w / (stepx2 + 1), h * (1 - cfg.data[0][1]));
-	cfg.data.forEach(function(val, index) {
-		var x = w / (stepx2 + 1) * (index + 1);
-		var y = h * (1 - val[1]);
+	cfg.data.forEach(function (val, index) {
+		x = w / (stepx2 + 1) * (index + 1);
+		y = h * (1 - val[1]);
 		ctx2.lineTo(x, y);
 	});
 	ctx2.stroke();
+
+	// 绘制阴影
+	ctx2.lineWidth = 1;
+	// 划线到最后一个点下面
+	ctx2.lineTo(x, h);
+	// 划线到第一个点下面
+	ctx2.lineTo(w / (stepx2 + 1), h);
+	ctx2.fillStyle = 'rgba(255,135,120,0.2)';
+	ctx2.fill();
+	ctx2.stroke();
+
 	component.append(cns2);
 	return component;
 };
