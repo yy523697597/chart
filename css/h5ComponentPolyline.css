@@ -1,7 +1,7 @@
 /*折线图组件样式*/
 
 .h5-component-polyline{
-	opacity: 1!important;
+
 }
 .h5-component-polyline canvas {
     position: absolute;
@@ -19,4 +19,11 @@
      bottom: -20px;
      line-height: 20px;
      text-align: center;
+     transition: all 1s 1.6s;
+ }
+.h5-component-onLoad .text{
+     opacity: 1;
+ }
+ .h5-component-onLeave .text{
+     opacity: 0;
  }

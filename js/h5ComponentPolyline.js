@@ -44,28 +44,71 @@ var H5ComponentPolyline = function (name, cfg) {
 	cns2.height = ctx2.height = h;
 	cns2.width = ctx2.width = w;
 	var stepx2 = cfg.data.length;
-	ctx2.beginPath();
-	ctx2.lineWidth = 3;
-	//折线颜色
-	ctx2.strokeStyle = '#ff8878';
-	cfg.data.forEach(function (val, index) {
-		var x = w / (stepx2 + 1) * (index + 1);
-		var y = h * (1 - val[1]);
-		ctx2.moveTo(x, y);
-		//画点
-		ctx2.arc(x, y, 5, 0, Math.PI * 2, false);
-		//文字样式
-		ctx2.fillStyle = val[2] ? val[2] : '#333';
-		//添加文字
-		ctx2.fillText((val[1] * 100) + '%', x - 10, y - 20);
+
+	function draw(per) {
+		ctx2.clearRect(0, 0, w, h);
+		ctx2.beginPath();
+		ctx2.lineWidth = 3;
+		//折线颜色
+		ctx2.strokeStyle = '#ff8878';
+		cfg.data.forEach(function (val, index) {
+			var x = w / (stepx2 + 1) * (index + 1);
+			var y = h * (1 - val[1] * per);
+			ctx2.moveTo(x, y);
+			//画点
+			ctx2.arc(x, y, 5, 0, Math.PI * 2, false);
+			//文字样式
+			ctx2.fillStyle = val[2] ? val[2] : '#333';
+			//添加文字
+			ctx2.fillText((val[1] * 100) + '%', x - 10, y - 20);
+		});
+
+		//画折线,先移动到第一个点
+		ctx2.moveTo(w / (stepx2 + 1), h * (1 - cfg.data[0][1] * per));
+		cfg.data.forEach(function (val, index) {
+			x = w / (stepx2 + 1) * (index + 1);
+			y = h * (1 - val[1] * per);
+			ctx2.lineTo(x, y);
+		});
+		ctx2.stroke();
+
+		// 绘制阴影
+		ctx2.lineWidth = 1;
+		// 划线到最后一个点下面
+		ctx2.lineTo(x, h);
+		// 划线到第一个点下面
+		ctx2.lineTo(w / (stepx2 + 1), h);
+		ctx2.fillStyle = 'rgba(255,135,120,0.2)';
+		ctx2.fill();
+		ctx2.stroke();
+	}
+	component.append(cns2);
+
+	component.on('onLoad', function () {
+		var per = 0;
+		for (var k = 0; k < 100; k++) {
+			setTimeout(function () {
+				per += 0.01;
+				draw(per)
+			}, k * 10 + 600);
+		}
 	});
 
-	//画折线,先移动到第一个点
-	ctx2.moveTo(w / (stepx2 + 1), h * (1 - cfg.data[0][1]));
+	component.on('onLeave', function () {
+		var per = 1;
+		for (var k = 0; k < 100; k++) {
+			setTimeout(function () {
+				per -= 0.01;
+				draw(per)
+			}, k * 10);
+		}
+	});
+
+	// 绘制项目文字
+	// 在这里绘制而不是在draw函数中绘制，是为了避免重复创建text，从而提高性能
 	cfg.data.forEach(function (val, index) {
 		x = w / (stepx2 + 1) * (index + 1);
 		y = h * (1 - val[1]);
-		ctx2.lineTo(x, y);
 		var text = $('<div class="text"></div>');
 		var width = w / ((stepx2 + 1) * 2);
 		text.css('width', width);
@@ -73,18 +116,6 @@ var H5ComponentPolyline = function (name, cfg) {
 		text.text(val[0]);
 		component.append(text);
 	});
-	ctx2.stroke();
 
-	// 绘制阴影
-	ctx2.lineWidth = 1;
-	// 划线到最后一个点下面
-	ctx2.lineTo(x, h);
-	// 划线到第一个点下面
-	ctx2.lineTo(w / (stepx2 + 1), h);
-	ctx2.fillStyle = 'rgba(255,135,120,0.2)';
-	ctx2.fill();
-	ctx2.stroke();
-
-	component.append(cns2);
 	return component;
 };

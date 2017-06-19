@@ -41,14 +41,14 @@
 			css: {
 				opacity: 0
 			},
-			// animateIn: {
-			// 	top: 50,
-			// 	opacity: 1
-			// },
-			// animateOut: {
-			// 	top: 150,
-			// 	opacity: 0
-			// },
+			animateIn: {
+				top: 50,
+				opacity: 1
+			},
+			animateOut: {
+				top: 150,
+				opacity: 0
+			},
 			center: true
 		}
 		var H5 = new H5ComponentPolyline('poly-line', cfg);
@@ -57,13 +57,14 @@
 
 		$('body').click(function () {
 			onLoad = !onLoad;
-			console.log(onLoad)
+
 			if (onLoad) {
 				$('.h5-component').trigger('onLoad');
+
 			} else {
 				$('.h5-component').trigger('onLeave');
-			}
 
+			}
 		});
 	</script>
 </body>
