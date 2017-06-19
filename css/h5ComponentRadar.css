@@ -6,6 +6,10 @@
     top: 0;
     left: 0;
 }
+.h5-component .text{
+position: absolute;
+opacity: 0;
+}
 .h5-component-onLoad .text{
      opacity: 1;
  }

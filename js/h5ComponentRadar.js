@@ -34,6 +34,7 @@ var H5ComponentRadar = function (name, cfg) {
 		}
 		// 闭合多边形轮廓
 		ctx.closePath();
+		ctx.strokeStyle = '#cecece';
 		ctx.stroke();
 	}
 
@@ -47,6 +48,25 @@ var H5ComponentRadar = function (name, cfg) {
 		ctx.moveTo(r, r);
 		ctx.lineTo(x, y);
 		ctx.strokeStyle = '#cecece';
+
+		// 添加项目文字
+		var text = $('<div class="text"></div>');
+		text.text(cfg.data[i][0]);
+
+		// 设置项目文字位置
+		if (x > w / 2) {
+			text.css('left', x / 2 + 5);
+		} else {
+			text.css('right', (w - x) / 2 + 5);
+		}
+		if (y > h / 2) {
+			text.css('top', y / 2 + 5);
+		} else {
+			text.css('bottom', (h - y) / 2 + 5);
+		}
+		text.css('transition', '1s ' + i * 0.3 + 's');
+
+		component.append(text);
 	}
 	ctx.stroke();
 
@@ -63,6 +83,13 @@ var H5ComponentRadar = function (name, cfg) {
 
 	// 绘制数据层
 	function draw(per) {
+		// 当动画完成之后再出现文字
+		if (per >= 1) {
+			component.find('.text').css('opacity', 1);
+		} else {
+			component.find('.text').css('opacity', 0);
+		}
+
 		ctx2.clearRect(0, 0, w, h);
 		ctx2.beginPath();
 		for (var i = 0; i < step; i++) {
