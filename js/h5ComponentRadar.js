@@ -51,10 +51,34 @@ var H5ComponentRadar = function (name, cfg) {
 	ctx.stroke();
 
 
-	function draw() {
+	var w = cfg.width;
+	var h = cfg.height;
+	var cns2 = document.createElement('canvas');
+	var ctx2 = cns2.getContext('2d');
+	// 在此将画布大小设置为给定大小，然后再CSS中设置画布大小为原来的1/4
+	// 为的是在高清屏幕下也有好的显示效果
+	cns2.height = ctx2.height = h;
+	cns2.width = ctx2.width = w;
+	component.append(cns2);
 
+	// 绘制数据层
+	function draw(per) {
+		ctx2.clearRect(0, 0, w, h);
+		ctx2.beginPath();
+		for (var i = 0; i < step; i++) {
+			var s = cfg.data[i][1] * per;
+			var rad = (2 * Math.PI / 360) * (360 / step) * i;
+			var x = r + Math.sin(rad) * r * s;
+			var y = r + Math.cos(rad) * r * s;
+			// 绘制多边形轮廓
+			ctx2.lineTo(x, y);
+			ctx2.strokeStyle = '#f00';
+		}
+		ctx2.strokeStyle = '#f00';
+		// 闭合多边形轮廓
+		ctx2.closePath();
+		ctx2.stroke();
 	}
-
 
 	component.on('onLoad', function () {
 		var per = 0;
