@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="../css/h5.css" />
+	<link rel="stylesheet" type="text/css" href="../css/h5ComponentBase.css" />
+	<link rel="stylesheet" type="text/css" href="../css/h5ComponentPie.css" />
+	<title></title>
+	<style type="text/css">
+		body {
+			min-height: 100vh;
+			min-width: 100vw;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div class="content"></div>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.js"></script>
+	<script src="../js/h5.js"></script>
+	<script src="../js/h5ComponentBase.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/h5ComponentPie.js"></script>
+	<script type="text/javascript">
+		var cfg = {
+			type: 'pie',
+			width: 400,
+			height: 400,
+			data: [
+				['js', .3],
+				['html5', .2],
+				['css3', .25],
+				['Vue', .15],
+				['小程序', .1]
+			],
+			css: {
+				top: 200,
+				// opacity: 0
+			},
+			// animateIn: {
+			// 	top: 200,
+			// 	opacity: 1
+			// },
+			// animateOut: {
+			// 	top: 50,
+			// 	opacity: 0
+			// },
+			center: true
+		}
+		var H5 = new H5ComponentPie('pie', cfg);
+		$('.content').append(H5);
+		var onLoad = false;
+
+		$('body').click(function () {
+			onLoad = !onLoad;
+			console.log(onLoad)
+			if (onLoad) {
+				$('.h5-component').trigger('onLoad');
+			} else {
+				$('.h5-component').trigger('onLeave');
+			}
+
+		});
+	</script>
+</body>
+
+</html>
