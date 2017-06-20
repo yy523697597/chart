@@ -1,6 +1,7 @@
-//折线图件对象
+//雷达图组件对象
 var H5ComponentRadar = function (name, cfg) {
 	var component = new H5ComponentBase(name, cfg);
+	// 添加背景层画布
 	var w = cfg.width;
 	var h = cfg.height;
 	var cns = document.createElement('canvas');
@@ -17,18 +18,20 @@ var H5ComponentRadar = function (name, cfg) {
 
 	var isBlue = true;
 	for (var j = 10; j > 0; j--) {
-		// rad = (2 * Math.PI / 360) * (360 / step);
+		// 确定x、y的公式
+		// 弧度：rad = (2 * Math.PI / 360) * (360 / step);
 		// x = a + Math.sin(rad) * r;
 		// y = b + Math.cos(rad) * r;
 		ctx.beginPath();
 		for (var i = 0; i < step; i++) {
 			var rad = (2 * Math.PI / 360) * (360 / step) * i;
+			// 分十份去绘制整个背景图层
 			var x = r + Math.sin(rad) * r * (j / 10);
 			var y = r + Math.cos(rad) * r * (j / 10);
 
 			// 绘制多边形轮廓
 			ctx.lineTo(x, y);
-			// 填充颜色
+			// 交替填充背景颜色
 			ctx.fillStyle = (isBlue = !isBlue) ? '#99B8FB' : '#ECF6FD';
 			ctx.fill();
 		}
@@ -44,7 +47,7 @@ var H5ComponentRadar = function (name, cfg) {
 		var rad = (2 * Math.PI / 360) * (360 / step) * i;
 		var x = r + Math.sin(rad) * r;
 		var y = r + Math.cos(rad) * r;
-		// 绘制骨架
+		// 绘制骨架，即圆心到多边形顶点的连线
 		ctx.moveTo(r, r);
 		ctx.lineTo(x, y);
 		ctx.strokeStyle = '#cecece';
@@ -53,12 +56,14 @@ var H5ComponentRadar = function (name, cfg) {
 		var text = $('<div class="text"></div>');
 		text.text(cfg.data[i][0]);
 
-		// 设置项目文字位置
+		// 根据项目位置来调整项目文字位置
+		// 设置左右位置
 		if (x > w / 2) {
 			text.css('left', x / 2 + 5);
 		} else {
 			text.css('right', (w - x) / 2 + 5);
 		}
+		// 设置上下位置
 		if (y > h / 2) {
 			text.css('top', y / 2 + 5);
 		} else {
@@ -71,6 +76,7 @@ var H5ComponentRadar = function (name, cfg) {
 	ctx.stroke();
 
 
+	// 添加数据层画布
 	var w = cfg.width;
 	var h = cfg.height;
 	var cns2 = document.createElement('canvas');
@@ -83,31 +89,38 @@ var H5ComponentRadar = function (name, cfg) {
 
 	// 绘制数据层
 	function draw(per) {
-		// 当动画完成之后再出现文字
+		// 当进出场动画完成之后再出现文字动画
 		if (per >= 1) {
 			component.find('.text').css('opacity', 1);
 		} else {
 			component.find('.text').css('opacity', 0);
 		}
-
+		// 每次绘制之前都需要清除上一次绘制的画布
 		ctx2.clearRect(0, 0, w, h);
 		ctx2.beginPath();
+
+		// 根据per绘制不同大小的多边形，结合起来形成放大动画
 		for (var i = 0; i < step; i++) {
 			var s = cfg.data[i][1] * per;
 			var rad = (2 * Math.PI / 360) * (360 / step) * i;
 			var x = r + Math.sin(rad) * r * s;
 			var y = r + Math.cos(rad) * r * s;
-			// 绘制多边形轮廓
+			// 绘制数据层多边形轮廓
 			ctx2.lineTo(x, y);
-			ctx2.strokeStyle = '#f00';
+			// 设置数据层轮廓的线宽与颜色
+			ctx2.lineWidth = 3;
+			ctx2.strokeStyle = '#FD5B78';
 		}
-		ctx2.strokeStyle = '#f00';
+
 		// 闭合多边形轮廓
 		ctx2.closePath();
 		ctx2.stroke();
 	}
 
+	// 触发进场动画
 	component.on('onLoad', function () {
+		// 通过不断增大系数per，来获得数据层放大的动画
+		// 循环100次，此时per=1，动画结束
 		var per = 0;
 		for (var k = 0; k < 100; k++) {
 			setTimeout(function () {
@@ -117,6 +130,7 @@ var H5ComponentRadar = function (name, cfg) {
 		}
 	});
 
+	// 触发出场动画
 	component.on('onLeave', function () {
 		var per = 1;
 		for (var k = 0; k < 100; k++) {

@@ -1,18 +1,24 @@
 /*雷达图组件样式*/
-.h5-component canvas{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+
+.h5-component canvas {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
-.h5-component .text{
-position: absolute;
-opacity: 0;
+
+.h5-component .text {
+	position: absolute;
+	opacity: 0;
+	min-width: 60px;
+	text-align: center;
 }
-.h5-component-onLoad .text{
-     opacity: 1;
- }
- .h5-component-onLeave .text{
-     opacity: 0;
- }
+
+.h5-component-onLoad .text {
+	opacity: 0;
+}
+
+.h5-component-onLeave .text {
+	opacity: 1;
+}
