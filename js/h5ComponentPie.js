@@ -2,7 +2,7 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 14:53:51 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-20 15:36:51
+ * @Last Modified time: 2017-06-20 16:45:26
  */
 
 //饼图组件对象
@@ -49,28 +49,52 @@ var H5ComponentPie = function (name, cfg) {
     // 360度是2π
     var aAngle = 2 * Math.PI;
     // 绘制数据层
-    function draw(per) {
-        for (var i = 0; i < step; i++) {
-            var item = cfg.data[i];
-            // 通过百分比来计算应该会值得弧度
-            var eAngle = sAngle + aAngle * item[1];
-            var color = item[2] || colors.pop();
+    for (var i = 0; i < step; i++) {
+        var item = cfg.data[i];
+        // 通过百分比来计算应该会值得弧度
+        var eAngle = sAngle + aAngle * item[1];
+        // pop() 方法用于删除并返回数组的最后一个元素。
+        var color = item[2] || colors.pop();
+        ctx2.beginPath();
+        // 每次绘制之前都应该先移动到原点
+        ctx2.moveTo(r, r);
+        // 每次都改变填充的颜色
+        ctx2.fillStyle = color;
+        ctx2.strokeStyle = color;
+        // 绘制圆弧和填充颜色，注意这里应该是ctx2而不是ctx
+        ctx2.arc(r, r, r, sAngle, eAngle);
+        ctx2.fill();
+        // 将上一次的结束角度作为下一次的开始角度
+        sAngle = eAngle;
+        ctx2.stroke();
 
-            ctx2.beginPath();
-            // 每次绘制之前都应该先移动到原点
-            ctx2.moveTo(r, r);
-            // 每次都改变填充的颜色
-            ctx2.fillStyle = color;
-            ctx2.strokeStyle = color;
-            // 绘制圆弧和填充颜色，注意这里应该是ctx2而不是ctx
-            ctx2.arc(r, r, r, sAngle, eAngle);
-            ctx2.fill();
-            // 将上一次的结束角度作为下一次的开始角度
-            sAngle = eAngle;
-            ctx2.stroke();
+        var text = $('<div class="text"></div>');
+        text.text(item[0]);
+        var per = $('<div class="per"></div>');
+        per.text((item[1] * 100) + '%');
+        text.append(per);
+
+        var x = r + Math.sin(.5 * Math.PI - sAngle) * r;
+        var y = r + Math.cos(.5 * Math.PI - sAngle) * r;
+
+        if (x > w / 2) {
+            text.css('left', x / 2);
+        } else {
+            text.css('right', (w - x) / 2);
         }
+        if (y > w / 2) {
+            text.css('top', y / 2);
+        } else {
+            text.css('bottom', (h - y) / 2);
+        }
+
+
+        text.css('color', color);
+
+        component.append(text);
     }
-    draw(1);
+
+
 
     // 添加遮罩层画布
     var cns3 = document.createElement('canvas');
@@ -81,12 +105,34 @@ var H5ComponentPie = function (name, cfg) {
     cns3.width = ctx3.width = w;
     $(cns3).css('z-index', 3);
     component.append(cns3);
-    // 绘制遮罩层
+
+
+    // 预先绘制一层蒙版图层来挡住数据层，避免数据层在页面刚载入的时候就显示出来
     ctx3.beginPath();
+    ctx3.moveTo(r, r);
     ctx3.fillStyle = '#eee';
     ctx3.arc(r, r, r, 0, 2 * Math.PI);
     ctx3.fill();
 
+
+    // 绘制动画
+    function draw(per) {
+        ctx3.clearRect(0, 0, w, h);
+        // 绘制遮罩层
+        ctx3.beginPath();
+        ctx3.moveTo(r, r);
+        ctx3.fillStyle = '#eee';
+        if (per <= 0) {
+            ctx3.arc(r, r, r, 0, 2 * Math.PI * per, false);
+            component.find('.text').css('opacity', 0);
+        } else {
+            ctx3.arc(r, r, r, 1.5 * Math.PI, 1.5 * Math.PI + 2 * Math.PI * per, true);
+        }
+        if (per >= 1) {
+            component.find('.text').css('opacity', 1);
+        }
+        ctx3.fill();
+    }
     // 触发进场动画
     component.on('onLoad', function () {
         // 通过不断增大系数per，来获得数据层放大的动画
@@ -106,7 +152,7 @@ var H5ComponentPie = function (name, cfg) {
         for (var k = 0; k < 100; k++) {
             setTimeout(function () {
                 per -= 0.01;
-                draw(per)
+                draw(per);
             }, k * 10);
         }
     });

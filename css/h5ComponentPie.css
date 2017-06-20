@@ -10,9 +10,12 @@
 
 .h5-component .text {
 	position: absolute;
-	opacity: 0;
 	min-width: 60px;
 	text-align: center;
+	z-index: 99;
+	font-weight: bold;
+	opacity: 0;
+	transition: all 1s;
 }
 
 .h5-component-onLoad .text {
