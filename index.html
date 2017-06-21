@@ -12,11 +12,29 @@
 			padding: 0;
 		}
 
+		.h5-page {
+			background-image: url(img/page_bg.jpg);
+		}
+
 		.h5-page-face {
-			background-image: url(img/face_bg.png);
+			background-image: url(img/face_bg.jpg);
 		}
 
 		.h5-component-name-slogan {
+			-webkit-animation: rock 2s infinite 2s;
+		}
+
+		.h5-component-name-caption {
+			background-image: url(img/page_caption_bg.png);
+			width: 283px;
+			height: 160px;
+			text-align: center;
+			line-height: 140px;
+			font-size: 20px;
+			color: #fff
+		}
+
+		.h5-component-name-title {
 			-webkit-animation: rock 2s infinite 2s;
 		}
 
@@ -47,6 +65,18 @@
 			}
 		}
 
+		.h5-component-name-back {
+			top: 30px;
+			-webkit-animation: back 2s infinite 2s;
+		}
+
+		@-webkit-keyframes back {
+
+			50% {
+				top: 20px;
+			}
+		}
+
 	</style>
 </head>
 
@@ -70,6 +100,30 @@
 		$(function () {
 			var h5 = new H5();
 
+			// 每次添加页面都自动添加一个footer
+			h5.whenAddPage = function () {
+				this.addComponent('footer', {
+					bg: 'img/footer.png',
+					css: {
+						opacity: 0,
+						bottom: -20,
+						height: 20,
+						width: '100%',
+						left: 0,
+						zIndex: 999
+					},
+					animateIn: {
+						opacity: 1,
+						bottom: 0
+					},
+					animateOut: {
+						opacity: 0,
+						bottom: '-20px'
+					},
+					delay: 500
+				})
+			};
+			// 首页
 			h5.addPage('face')
 				.addComponent('logo', {
 					center: true,
@@ -129,7 +183,8 @@
 						opacity: 0
 					},
 					delay: 1000
-				}).addComponent('face_img_right', {
+				})
+				.addComponent('face_img_right', {
 					center: false,
 					width: 276,
 					height: 449,
@@ -150,6 +205,162 @@
 						opacity: 0
 					},
 					delay: 1500
+				})
+				// 第二页
+				.addPage()
+				.addComponent('caption', { text: '核心理念' })
+				.addComponent('text', {
+					width: 521,
+					height: 60,
+					center: true,
+					text: 'IT教育网=只学有用的',
+					css: {
+						opacity: 0,
+						textAlign: 'center',
+						color: '#f00',
+						fontSize: '26px',
+						fontWeight: 'bold'
+					},
+					animateIn: {
+						opacity: 1,
+						top: 160
+					},
+					animateOut: {
+						opacity: 0,
+						top: 240
+					}
+				})
+				.addComponent('text', {
+					center: true,
+					width: 521,
+					height: 335,
+					bg: 'img/description_bg.gif',
+					text: '2013年，慕课网的诞生引领中国IT职业 从教育进入新时代； 高质量实战课程、全新教学模式、实时 互动学习，以领先优势打造行业品牌； 迄今为止，慕课网已成为中国规模最大、 互动性最高的IT技能学习平台',
+					css: {
+						opacity: 0,
+						top: 200,
+						color: '#fff',
+						lineHeight: '22px',
+						fontSize: '14px',
+						padding: '15px 10px 10px',
+						textAlign: 'justify'
+					},
+					animateIn: {
+						left: '50%',
+						opacity: 1,
+					},
+					animateOut: {
+						left: '0%',
+						opacity: 0
+					},
+					delay: 1000
+				})
+				.addComponent('people', {
+					center: true,
+					width: 515,
+					height: 305,
+					bg: 'img/p1_people.png',
+					css: {
+						opacity: 0,
+						bottom: '0',
+					},
+					animateIn: {
+						opacity: 1,
+						bottom: '37px'
+					},
+					animateOut: {
+						opacity: 0,
+						bottom: '0'
+					},
+					delay: 500
+				})
+
+
+
+				// 尾页
+				.addPage('tail')
+				.addComponent('logo', {
+					center: true,
+					width: 395,
+					height: 129,
+					bg: 'img/tail_logo.png',
+					css: {
+						opacity: 0,
+						top: 150
+					},
+					animateIn: {
+						opacity: 1,
+						top: '220px'
+					},
+					animateOut: {
+						opacity: 0,
+						top: '150px'
+					}
+				})
+				.addComponent('title', {
+					center: true,
+					text: '期待与您合作',
+					height: 92,
+					width: 400,
+					css: {
+						opacity: 0,
+						fontSize: '24px',
+						lineHeight: '46px',
+						top: 340,
+						textAlign: 'center',
+						fontWeight: 'bold',
+						color: '#999'
+					},
+					animateIn: {
+						opacity: 1,
+						top: '280px'
+					},
+					animateOut: {
+						opacity: 0,
+						top: '340px'
+					},
+					delay: 500
+				})
+				.addComponent('share', {
+					bg: 'img/tail_share.png',
+					width: 128,
+					height: 120,
+					css: {
+						opacity: 0,
+						right: '-50px',
+						top: '20px'
+					},
+					animateIn: {
+						opacity: 1,
+						right: '20px'
+					},
+					animateOut: {
+						opacity: 0,
+						right: '-50px'
+					},
+					delay: 1000
+				})
+				.addComponent('back', {
+					center: true,
+					bg: 'img/tail_back.png',
+					width: 52,
+					height: 50,
+					css: {
+						opacity: 0,
+					},
+					animateIn: {
+						opacity: 1,
+
+					},
+					animateOut: {
+						opacity: 0,
+
+					},
+					delay: 1000,
+					// 点击返回首页
+					onclick: function () {
+						$.fn.fullpage.moveTo(1);
+					}
 				})
 				.loader();
 		})

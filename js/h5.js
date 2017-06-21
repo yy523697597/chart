@@ -17,6 +17,11 @@ var H5 = function () {
 		//创建了page之后必须添加到el中去，才能显示
 		this.el.append(page);
 		this.pages.push(page);
+
+		// 每次在添加页面的时候都自动添加footer
+		if (typeof this.whenAddPage === 'function') {
+			this.whenAddPage();
+		}
 		return this;
 	};
 	this.addComponent = function (name, cfg) {

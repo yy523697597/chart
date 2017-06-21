@@ -15,6 +15,11 @@ var H5ComponentBase = function (name, cfg) {
 			left: '50%'
 		});
 	}
+	if (typeof cfg.onclick === 'function') {
+		$component.on('click', cfg.onclick);
+	}
+
+
 	$component.on('onLeave', function () {
 
 		setTimeout(function () {
