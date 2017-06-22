@@ -14,7 +14,6 @@ var H5Loading = function (images) {
 			var src = images[i];
 			var img = new Image;
 			img.onload = function () {
-				// console.log(window[id])
 				window[id].loader();
 			}
 			img.src = src;
@@ -25,7 +24,7 @@ var H5Loading = function (images) {
 		// 同时更新进度条
 		this.loadedCount++;
 		// console.log(this.loadedCount, this._images.length);
-		$('#rate').text((this.loadedCount / this._images) * 100 + '%');
+		$('#rate').text((this.loadedCount / this._images * 100).toFixed(0) + '%');
 
 		if (this.loadedCount < this._images) {
 			return this;
