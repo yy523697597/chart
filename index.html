@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="css/h5.css">
+	<link rel="stylesheet" href="css/h5Loading.css">
 	<title>项目情况总结</title>
 	<style>
 		body {
@@ -81,6 +82,13 @@
 </head>
 
 <body>
+	<div class="loading">
+		<div class="double-bounce1"></div>
+		<div class="double-bounce2"></div>
+		<div id="rate">0%</div>
+	</div>
+	<!--再输loading组件资源-->
+	<script src="js/h5Loading.js"></script>
 	<!--载入所有组件资源-->
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -671,7 +679,7 @@
 						$.fn.fullpage.moveTo(1);
 					}
 				})
-				.loader();
+				.loader(['img/description_bg.gif', 'img/face_bg.jpg', 'img/face_img_left.png', 'img/face_img_right.png', 'img/face_logo.png', 'img/face_slogan.png', 'img/footer.png', 'img/p1_people.png', 'img/page_bg.jpg', 'img/page_caption_bg.png', 'img/tail_back.png', 'img/tail_logo.png', 'img/tail_share.png']);
 		})
 	</script>
 </body>

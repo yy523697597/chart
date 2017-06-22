@@ -74,4 +74,6 @@ var H5 = function () {
 		});
 		this.el.show();
 	};
+	this.loader = typeof H5Loading === 'function' ? H5Loading : this.loader;
+	return this;
 };
