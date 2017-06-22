@@ -15,6 +15,7 @@
 }
 .h5-component-bar-v .name{
     color: #333;    
+    margin-top: 5px;
 }
 .h5-component-bar-v .rate{ 
 	display: flex;

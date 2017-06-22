@@ -8,13 +8,12 @@
 	left: 0;
 }
 
-.h5-component .text {
+.h5-component-pie .text {
 	position: absolute;
 	min-width: 60px;
 	text-align: center;
-	z-index: 99;
 	font-weight: bold;
+	z-index: 99;
 	opacity: 0;
-	transition: all 1s;
 }
 

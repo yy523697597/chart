@@ -30,12 +30,12 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: all 1s .5s;
+    transition: all 1s 1.1s;
     border-radius: 2px;
 }
 .h5-component-bar .per{
     /*第三个参数是延迟时间*/
-    transition: all 1s 1.5s;
+    transition: all 1s 2.1s;
     width: 20px;
     height: 15px;
     float: left;

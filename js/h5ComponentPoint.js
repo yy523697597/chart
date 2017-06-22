@@ -26,6 +26,8 @@ var H5ComponentPoint = function (name, cfg) {
 				top: (item[4])
 			});
 		}
+		var step = cfg.data.length;
+
 		component.append(point);
 	});
 	return component;

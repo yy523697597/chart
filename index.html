@@ -288,7 +288,8 @@
 						opacity: 0,
 						top: '120px',
 						fontSize: '24px',
-						color: '#666'
+						color: '#666',
+						textAlign: 'center'
 					},
 					animateIn: {
 						top: 150,
@@ -328,42 +329,261 @@
 				// 第四页 图表组件 饼图
 				.addPage()
 				.addComponent('caption', {
-					text: '移动课程开发资源',
+					text: '开发方向',
+				})
+				.addComponent('msg', {
+					width: 400,
+					text: '前端类型分布',
+					center: true,
 					css: {
-
-					}
+						opacity: 0,
+						bottom: '80px',
+						fontSize: '24px',
+						color: '#666',
+						textAlign: 'center'
+					},
+					animateIn: {
+						bottom: '120px',
+						opacity: 1
+					},
+					animateOut: {
+						bottom: '80px',
+						opacity: 0
+					},
+				})
+				.addComponent('pie', {
+					type: 'pie',
+					width: 400,
+					height: 400,
+					data: [
+						['PC', .3],
+						['android', .2],
+						['ios', .25],
+						['微信', .15],
+						['小程序', .1]
+					],
+					css: {
+						top: 250,
+						opacity: 0
+					},
+					animateIn: {
+						left: '50%',
+						opacity: 1
+					},
+					animateOut: {
+						left: '0%',
+						opacity: 0
+					},
+					center: true,
+					delay: 500
 				})
 				// 第五页 图表组件 水平柱状图
 				.addPage()
+
+				.addComponent('msg', {
+					width: 400,
+					text: '学习过的资源',
+					center: true,
+					css: {
+						opacity: 0,
+						bottom: '80px',
+						fontSize: '24px',
+						color: '#666',
+						textAlign: 'center'
+					},
+					animateIn: {
+						bottom: '120px',
+						opacity: 1
+					},
+					animateOut: {
+						bottom: '80px',
+						opacity: 0
+					},
+				})
 				.addComponent('caption', {
 					text: '前端课程开发资源',
-					css: {
-
-					}
 				})
-				// 第六页 图表组件 雷达图
+				.addComponent('bar', {
+					type: 'bar',
+					width: 550,
+					height: 550,
+					data: [
+						['javascript', .4, '#1fda9a'],
+						['html5', .1, '#ee4b3e'],
+						['css3', .2, '#fba827'],
+						['Vue', .3, '#004687'],
+						['小程序', .5, '#636363'],
+						['bootstrap', .8, '#ff5a09']
+					],
+					css: {
+						opacity: 0,
+						top: '120px',
+						left: '100px'
+					},
+					animateIn: {
+						top: 220,
+						opacity: 1
+					},
+					animateOut: {
+						top: 120,
+						opacity: 0
+					},
+					delay: 600
+
+				})
+				// 第六页 图表组件 垂直柱状图
 				.addPage()
+
+				.addComponent('msg', {
+					width: 400,
+					text: '后台学习资源',
+					center: true,
+					css: {
+						opacity: 0,
+						bottom: '80px',
+						fontSize: '24px',
+						color: '#666',
+						textAlign: 'center'
+					},
+					animateIn: {
+						bottom: '120px',
+						opacity: 1
+					},
+					animateOut: {
+						bottom: '80px',
+						opacity: 0
+					},
+				})
+				.addComponent('caption', {
+					text: '后台课程开发资源',
+				})
+				.addComponent('bar-v', {
+					type: 'bar-v',
+					width: 650,
+					height: 650,
+					center: true,
+					data: [
+						['js', .4, '#253939'],
+						['html5', .1, '#558188'],
+						['css3', .2, '#5fa292'],
+						['Vue', .6, '#ff9c5f'],
+						['小程序', .7, '#ff8b6c']
+					],
+					css: {
+						opacity: 0,
+						top: '120px',
+						left: '100px'
+					},
+					animateIn: {
+						top: 160,
+						opacity: 1
+					},
+					animateOut: {
+						top: 120,
+						opacity: 0
+					},
+					delay: 600
+
+				})
+				// 第七页 图表组件 雷达图
+				.addPage()
+				.addComponent('msg', {
+					width: 400,
+					text: '后台学习资源',
+					center: true,
+					css: {
+						opacity: 0,
+						bottom: '80px',
+						fontSize: '24px',
+						color: '#666',
+						textAlign: 'center'
+					},
+					animateIn: {
+						bottom: '120px',
+						opacity: 1
+					},
+					animateOut: {
+						bottom: '80px',
+						opacity: 0
+					},
+				})
 				.addComponent('caption', {
 					text: '后端课程开发资源',
-					css: {
-
-					}
 				})
-				// 第六页 图表组件 环图
-				.addPage()
-				.addComponent('caption', {
-					text: '报名人数过万',
+				.addComponent('radar', {
+					type: 'radar',
+					width: 400,
+					height: 400,
+					data: [
+						['js', .4],
+						['html5', .2],
+						['css3', .25],
+						['Vue', .3],
+						['小程序', .7]
+					],
 					css: {
-
-					}
+						top: 200,
+						opacity: 0
+					},
+					animateIn: {
+						top: 200,
+						opacity: 1
+					},
+					animateOut: {
+						top: 50,
+						opacity: 0
+					},
+					center: true,
+					delay: 600
 				})
-				// 第七页 图表组件 散点图
+
+				// 第八页 图表组件 散点图
 				.addPage()
+				.addComponent('msg', {
+					width: 400,
+					text: '后台学习资源',
+					center: true,
+					css: {
+						opacity: 0,
+						top: '80px',
+						fontSize: '24px',
+						color: '#666',
+						textAlign: 'center'
+					},
+					animateIn: {
+						top: '160px',
+						opacity: 1
+					},
+					animateOut: {
+						top: '80px',
+						opacity: 0
+					},
+				})
 				.addComponent('caption', {
 					text: '课程难度分布',
+				})
+				.addComponent('point', {
+					type: 'point',
+					width: 300,
+					height: 300,
+					data: [
+						['A项目', .4, '#dda185'],
+						['B项目', .2, '#ab3334', 100, '100%'],
+						['C项目', .2, '#331919', 15, '-60%'],
+					],
 					css: {
-
-					}
+						bottom: 0,
+						opacity: 0
+					},
+					animateIn: {
+						bottom: 180,
+						opacity: 1
+					},
+					animateOut: {
+						bottom: 80,
+						opacity: 0
+					},
+					center: true
 				})
 
 				// 尾页

@@ -41,6 +41,21 @@ var H5 = function () {
 			case 'polyline':
 				var component = new H5ComponentPolyline(name, cfg)
 				break;
+			case 'pie':
+				var component = new H5ComponentPie(name, cfg)
+				break;
+			case 'bar':
+				var component = new H5ComponentBar(name, cfg)
+				break;
+			case 'bar-v':
+				var component = new H5ComponentBarV(name, cfg)
+				break;
+			case 'radar':
+				var component = new H5ComponentRadar(name, cfg)
+				break;
+			case 'point':
+				var component = new H5ComponentPoint(name, cfg)
+				break;
 			default:
 				return this;
 		}

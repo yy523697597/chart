@@ -2,7 +2,7 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 09:49:13 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-20 10:38:39
+ * @Last Modified time: 2017-06-22 15:43:49
  */
 //雷达图组件对象
 var H5ComponentRadar = function (name, cfg) {
@@ -75,7 +75,7 @@ var H5ComponentRadar = function (name, cfg) {
         } else {
             text.css('bottom', (h - y) / 2 + 5);
         }
-        text.css('transition', '1s ' + i * 0.3 + 's');
+        text.css('transition', '1s ' + (1.5 + i * 0.3) + 's');
 
         component.append(text);
     }

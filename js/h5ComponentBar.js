@@ -2,7 +2,6 @@
 var H5ComponentBar = function (name, cfg) {
 	var component = new H5ComponentBase(name, cfg);
 	$.each(cfg.data, function (index, item) {
-		console.log(item)
 		var line = $('<div class = "line"></div>');
 		var name = $('<div class = "name">' + item[0] + '</div>');
 		var rate = $('<div class ="rate"></div>');
@@ -10,6 +9,8 @@ var H5ComponentBar = function (name, cfg) {
 		var per = $('<div class ="per">' + (item[1] * 100) + '%</div>');
 		if (item[2]) {
 			bg.css('background-color', item[2]);
+			per.css('color', item[2]);
+			name.css('color', item[2]);
 		}
 		// 根据不同的比例去设定rate的宽度或高度
 		if (cfg.type === 'bar') {

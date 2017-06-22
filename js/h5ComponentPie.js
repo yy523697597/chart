@@ -2,7 +2,7 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 14:53:51 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-20 16:45:26
+ * @Last Modified time: 2017-06-22 14:03:52
  */
 
 //饼图组件对象
@@ -42,7 +42,7 @@ var H5ComponentPie = function (name, cfg) {
     component.append(cns2);
 
     var step = cfg.data.length;
-    var colors = ['#81C2D6', '#8192D6', '#D9B3E6', '#DCF7A1', '#83FCD8'];
+    var colors = ['#3f2860', '#90c5a9', '#7a7995', '#ef6d3b', '#fa8b60'];
 
     // 1.5π在0点的位置上，将此角度作为起始点比较合适
     var sAngle = 1.5 * Math.PI;
@@ -90,6 +90,8 @@ var H5ComponentPie = function (name, cfg) {
 
 
         text.css('color', color);
+        var props = 'all 1s ' + (1.5 + 0.3 * i) + 's';
+        text.css('transition', props);
 
         component.append(text);
     }
