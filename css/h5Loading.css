@@ -33,7 +33,6 @@ body{
 	position: absolute;
 	top: 20px;
 	text-align: center;
-	z-index: 999;
 }
 .double-bounce1{
 	-webkit-animation: bounce infinite 2s ease-in-out 0s;
