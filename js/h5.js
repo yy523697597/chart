@@ -38,6 +38,9 @@ var H5 = function () {
 			case 'base':
 				var component = new H5ComponentBase(name, cfg)
 				break;
+			case 'polyline':
+				var component = new H5ComponentPolyline(name, cfg)
+				break;
 			default:
 				return this;
 		}

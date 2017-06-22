@@ -10,15 +10,7 @@
 
 .h5-component .text {
 	position: absolute;
-	opacity: 0;
 	min-width: 60px;
 	text-align: center;
 }
 
-.h5-component-onLoad .text {
-	opacity: 0;
-}
-
-.h5-component-onLeave .text {
-	opacity: 1;
-}

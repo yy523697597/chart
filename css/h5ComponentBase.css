@@ -3,3 +3,10 @@
 	background-repeat: no-repeat;
 	position: absolute;
 }
+.h5-component-onLoad .text{
+	margin: -5px;
+     opacity: 1!important;
+ }
+ .h5-component-onLeave  .text{
+     opacity: 0!important;
+ }
