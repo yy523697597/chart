@@ -1,4 +1,5 @@
 //H5全局对象
+var jsonData = [];
 var H5 = function () {
 	this.id = ('h5_' + Math.random()).replace('.', '_');
 	this.el = $('<div id="' + this.id + '" class="h5"></div>').hide();
@@ -8,6 +9,7 @@ var H5 = function () {
 	//text 用于测试是否已经添加节点
 	this.addPage = function (name, text) {
 		var page = $('<div class="h5-page section"></div');
+		jsonData.push({ isPage: true, name: name, text: text });
 		if (name != undefined) {
 			page.addClass('h5-page-' + name);
 		}
@@ -25,6 +27,7 @@ var H5 = function () {
 		return this;
 	};
 	this.addComponent = function (name, cfg) {
+		jsonData.push({ isPage: false, name: name, cfg: cfg });
 		cfg = cfg || {};
 		if (!cfg.type) {
 			cfg = $.extend({
