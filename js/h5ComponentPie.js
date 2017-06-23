@@ -2,7 +2,7 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 14:53:51 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-22 14:03:52
+ * @Last Modified time: 2017-06-23 16:48:46
  */
 
 //饼图组件对象
@@ -92,7 +92,6 @@ var H5ComponentPie = function (name, cfg) {
         text.css('color', color);
         var props = 'all 1s ' + (1.5 + 0.3 * i) + 's';
         text.css('transition', props);
-
         component.append(text);
     }
 
@@ -131,7 +130,14 @@ var H5ComponentPie = function (name, cfg) {
             ctx3.arc(r, r, r, 1.5 * Math.PI, 1.5 * Math.PI + 2 * Math.PI * per, true);
         }
         if (per >= 1) {
+            // 在重排文本之前，先将过渡时间改为0,不然会卡死浏览器
+            // // 完成文字重排之后再将过度时间改为正常
+            // component.find('.text').css('transition', 'all 0s');
+            // H5ComponentPie.reSort(component.find('.text'));
+            // component.find('.text').css('transition', 'all 1.5s');
             component.find('.text').css('opacity', 1);
+            ctx.clearRect(0, 0, w, h);
+
         }
         ctx3.fill();
     }
@@ -140,24 +146,76 @@ var H5ComponentPie = function (name, cfg) {
         // 通过不断增大系数per，来获得数据层放大的动画
         // 循环100次，此时per=1，动画结束
         var per = 0;
-        for (var k = 0; k < 100; k++) {
+        for (var k = 0; k < 40; k++) {
             setTimeout(function () {
-                per += 0.01;
+                per += 0.025;
                 draw(per);
-            }, k * 10 + 600);
+            }, k * 25 + 600);
         }
     });
 
     // 触发出场动画
     component.on('onLeave', function () {
         var per = 1;
-        for (var k = 0; k < 100; k++) {
+        for (var k = 0; k < 40; k++) {
             setTimeout(function () {
-                per -= 0.01;
+                per -= 0.025;
                 draw(per);
-            }, k * 10);
+            }, k * 25);
         }
     });
 
     return component;
+};
+
+H5ComponentPie.reSort = function (list) {
+    var detection = function (a, b) {
+        // 这里是offset()，而不是offset
+        var offsetA = $(a).offset();
+        var offsetB = $(b).offset();
+
+
+        var shadowA_x = [offsetA.left, offsetA.left + $(a).width()];
+        var shadowB_x = [offsetB.left, offsetB.left + $(b).width()];
+
+        var shadowA_y = [offsetA.top, offsetA.top + $(a).height()];
+        var shadowB_y = [offsetB.top, offsetB.top + $(b).height()];
+
+        // 监测x轴是否相交
+        var monitor_x = (shadowA_x[0] > shadowB_x[0] && shadowA_x[0] < shadowB_x[1]) || (shadowA_x[1] > shadowB_x[0] && shadowA_x[1] < shadowB_x[1]);
+        // 监测y轴是否相交
+        var monitor_y = (shadowA_y[0] > shadowB_y[0] && shadowA_y[0] < shadowB_y[1]) || (shadowA_y[1] > shadowB_y[0] && shadowA_y[1] < shadowB_y[1]);
+
+        return monitor_x && monitor_y;
+    };
+
+    var composeType = function (a, b) {
+
+        if ($(a).css('bottom') != 'auto') {
+            $(a).css('bottom', parseInt($(a).css('bottom')) + $(b).height());
+        }
+
+        if ($(a).css('top') != 'auto') {
+            $(a).css('top', parseInt($(a).css('top')) + $(b).height());
+        }
+
+    };
+
+    var willRest = [list[0]];
+    $.each(list, function (i, domTarget) {
+        console.log(detection(willRest[willRest.length - 1], domTarget))
+        if (detection(willRest[willRest.length - 1], domTarget)) {
+            willRest.push(domTarget);
+        }
+        if (willRest.length > 1) {
+            console.log(willRest)
+            $.each(willRest, function (i, domA) {
+
+                if (willRest[i + 1]) {
+                    composeType(domA, willRest[i + 1]);
+                }
+            });
+            H5ComponentPie.reSort(willRest);
+        }
+    });
 };

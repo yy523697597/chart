@@ -1,15 +1,15 @@
 var H5Loading = function (images) {
 
 	var id = this.id;
-	if (this._images === undefined) {
+	if (this._imagesCount === undefined) {
 		// 第一次进入
-		this._images = (images || []).length;
+		this._imagesCount = (images || []).length;
 		this.loadedCount = 0;
 		// debugger
 		// 将创建的H5对象存储在全局windows对象中
 		window[id] = this;
 
-		for (var i = 0; i < this._images; i++) {
+		for (var i = 0; i < this._imagesCount; i++) {
 
 			var src = images[i];
 			var img = new Image;
@@ -23,10 +23,10 @@ var H5Loading = function (images) {
 		// 如果不是第一次进入，每加载完一次，已加载数量就加1
 		// 同时更新进度条
 		this.loadedCount++;
-		// console.log(this.loadedCount, this._images.length);
-		$('#rate').text((this.loadedCount / this._images * 100).toFixed(0) + '%');
+		// console.log(this.loadedCount, this._imagesCount.length);
+		$('#rate').text((this.loadedCount / this._imagesCount * 100).toFixed(0) + '%');
 
-		if (this.loadedCount < this._images) {
+		if (this.loadedCount < this._imagesCount) {
 			return this;
 		}
 	}
