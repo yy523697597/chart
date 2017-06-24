@@ -71,10 +71,23 @@
             -webkit-animation: back 2s infinite 2s;
         }
 
+
         @-webkit-keyframes back {
 
             50% {
                 top: 20px;
+            }
+        }
+
+        .h5-component-point {
+            -webkit-animation: bigger 2s infinite 2s;
+        }
+
+        @-webkit-keyframes back {
+
+            50% {
+                width: 160px;
+                height: 160px;
             }
         }
     </style>
@@ -140,7 +153,6 @@
                     } else {
                         h5.addComponent(item.name, item.cfg)
                     }
-
                 });
                 h5.loader(['img/description_bg.gif', 'img/face_bg.jpg', 'img/face_img_left.png', 'img/face_img_right.png', 'img/face_logo.png', 'img/face_slogan.png', 'img/footer.png', 'img/p1_people.png', 'img/page_bg.jpg', 'img/page_caption_bg.png', 'img/tail_back.png', 'img/tail_logo.png', 'img/tail_share.png']);
             });

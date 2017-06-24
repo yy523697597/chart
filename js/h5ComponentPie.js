@@ -2,10 +2,10 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 14:53:51 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-24 17:03:25
+ * @Last Modified time: 2017-06-24 17:11:12
  */
 
-//饼图组件对象
+// 饼图组件对象
 var H5ComponentPie = function (name, cfg) {
     var component = new H5ComponentBase(name, cfg);
 
@@ -22,14 +22,6 @@ var H5ComponentPie = function (name, cfg) {
     component.append(cns);
 
     var r = w / 2;
-    // // 添加一个底图层
-    // ctx.beginPath();
-    // ctx.strokeStyle = '#eee';
-    // ctx.fillStyle = '#eee';
-    // ctx.arc(r, r, r, 0, 2 * Math.PI);
-    // ctx.fill();
-    // ctx.stroke();
-
 
     // 添加数据层画布
     var cns2 = document.createElement('canvas');
@@ -74,8 +66,8 @@ var H5ComponentPie = function (name, cfg) {
         per.text((item[1] * 100) + '%');
         text.append(per);
 
-        var x = r + Math.sin(.5 * Math.PI - sAngle) * r;
-        var y = r + Math.cos(.5 * Math.PI - sAngle) * r;
+        var x = r + Math.sin(0.5 * Math.PI - sAngle) * r;
+        var y = r + Math.cos(0.5 * Math.PI - sAngle) * r;
 
         if (x > w / 2) {
             text.css('left', x / 2);
@@ -88,14 +80,11 @@ var H5ComponentPie = function (name, cfg) {
             text.css('bottom', (h - y) / 2);
         }
 
-
         text.css('color', color);
         var props = 'all 1s ' + (1.5 + 0.3 * i) + 's';
         text.css('transition', props);
         component.append(text);
     }
-
-
 
     // 添加遮罩层画布
     var cns3 = document.createElement('canvas');
@@ -107,14 +96,12 @@ var H5ComponentPie = function (name, cfg) {
     $(cns3).css('z-index', 3);
     component.append(cns3);
 
-
     // 预先绘制一层蒙版图层来挡住数据层，避免数据层在页面刚载入的时候就显示出来
     ctx3.beginPath();
     ctx3.moveTo(r, r);
     ctx3.fillStyle = '#eee';
     ctx3.arc(r, r, r, 0, 2 * Math.PI);
     ctx3.fill();
-
 
     // 绘制动画
     function draw(per) {
@@ -137,7 +124,6 @@ var H5ComponentPie = function (name, cfg) {
             // component.find('.text').css('transition', 'all 1.5s');
             component.find('.text').css('opacity', 1);
             ctx.clearRect(0, 0, w, h);
-
         }
         ctx3.fill();
     }
@@ -146,22 +132,22 @@ var H5ComponentPie = function (name, cfg) {
         // 通过不断增大系数per，来获得数据层放大的动画
         // 循环100次，此时per=1，动画结束
         var per = 0;
-        for (var k = 0; k < 40; k++) {
+        for (var k = 0; k < 30; k++) {
             setTimeout(function () {
-                per += 0.025;
+                per += 0.03;
                 draw(per);
-            }, k * 25 + 600);
+            }, k * 30 + 600);
         }
     });
 
     // 触发出场动画
     component.on('onLeave', function () {
         var per = 1;
-        for (var k = 0; k < 40; k++) {
+        for (var k = 0; k < 30; k++) {
             setTimeout(function () {
-                per -= 0.025;
+                per -= 0.03;
                 draw(per);
-            }, k * 25);
+            }, k * 30);
         }
     });
 
@@ -173,7 +159,6 @@ H5ComponentPie.reSort = function (list) {
         // 这里是offset()，而不是offset
         var offsetA = $(a).offset();
         var offsetB = $(b).offset();
-
 
         var shadowA_x = [offsetA.left, offsetA.left + $(a).width()];
         var shadowB_x = [offsetB.left, offsetB.left + $(b).width()];
@@ -190,27 +175,23 @@ H5ComponentPie.reSort = function (list) {
     };
 
     var composeType = function (a, b) {
-
-        if ($(a).css('bottom') != 'auto') {
+        if ($(a).css('bottom') !== 'auto') {
             $(a).css('bottom', parseInt($(a).css('bottom')) + $(b).height());
         }
 
-        if ($(a).css('top') != 'auto') {
+        if ($(a).css('top') !== 'auto') {
             $(a).css('top', parseInt($(a).css('top')) + $(b).height());
         }
-
     };
 
     var willRest = [list[0]];
     $.each(list, function (i, domTarget) {
-        console.log(detection(willRest[willRest.length - 1], domTarget))
         if (detection(willRest[willRest.length - 1], domTarget)) {
             willRest.push(domTarget);
         }
         if (willRest.length > 1) {
-            console.log(willRest)
-            $.each(willRest, function (i, domA) {
 
+            $.each(willRest, function (i, domA) {
                 if (willRest[i + 1]) {
                     composeType(domA, willRest[i + 1]);
                 }

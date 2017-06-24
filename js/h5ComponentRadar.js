@@ -2,7 +2,7 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 09:49:13 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-23 16:52:14
+ * @Last Modified time: 2017-06-24 17:11:49
  */
 //雷达图组件对象
 var H5ComponentRadar = function (name, cfg) {
@@ -128,22 +128,22 @@ var H5ComponentRadar = function (name, cfg) {
         // 通过不断增大系数per，来获得数据层放大的动画
         // 循环100次，此时per=1，动画结束
         var per = 0;
-        for (var k = 0; k < 40; k++) {
+        for (var k = 0; k < 30; k++) {
             setTimeout(function () {
-                per += 0.025;
+                per += 0.03;
                 draw(per);
-            }, k * 25 + 600);
+            }, k * 30 + 600);
         }
     });
 
     // 触发出场动画
     component.on('onLeave', function () {
         var per = 1;
-        for (var k = 0; k < 40; k++) {
+        for (var k = 0; k < 30; k++) {
             setTimeout(function () {
-                per -= 0.025;
+                per -= 0.03;
                 draw(per)
-            }, k * 25);
+            }, k * 30);
         }
     });
 
