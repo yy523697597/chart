@@ -78,18 +78,6 @@
                 top: 20px;
             }
         }
-
-        .h5-component-point {
-            -webkit-animation: bigger 2s infinite 2s;
-        }
-
-        @-webkit-keyframes bigger {
-
-            50% {
-                width: 160px;
-                height: 160px;
-            }
-        }
     </style>
 </head>
 
@@ -115,6 +103,9 @@
             html.push('<link rel="stylesheet" type="text/css" href="css/h5Component' + res[s] + '.css">');
         }
         document.write(html.join(''));
+        $('.h5-component-name-back').click(function () {
+            $.fn.fullpage.moveTo(1);
+        });
     </script>
     <script>
         $(function () {
