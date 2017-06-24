@@ -311,7 +311,7 @@
                 ],
                 [
                     "小米",
-                    0.55
+                    0.54
                 ],
                 [
                     "荣耀",
@@ -375,7 +375,7 @@
         "isPage": false,
         "name": "msg",
         "cfg": {
-            "width": 400,
+            "width": 500,
             "text": "最受欢迎的电脑品牌",
             "center": true,
             "css": {
@@ -801,17 +801,17 @@
             "center": true,
             "css": {
                 "opacity": 0,
-                "top": "80px",
+                "bottom": "40px",
                 "fontSize": "24px",
                 "color": "#666",
                 "textAlign": "center"
             },
             "animateIn": {
-                "top": "100px",
+                "bottom": "100px",
                 "opacity": 1
             },
             "animateOut": {
-                "top": "80px",
+                "bottom": "40px",
                 "opacity": 0
             }
         }
