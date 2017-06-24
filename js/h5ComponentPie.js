@@ -2,7 +2,7 @@
  * @Author: yuyi 
  * @Date: 2017-06-20 14:53:51 
  * @Last Modified by: yuyi
- * @Last Modified time: 2017-06-23 16:48:46
+ * @Last Modified time: 2017-06-24 17:03:25
  */
 
 //饼图组件对象
@@ -22,13 +22,13 @@ var H5ComponentPie = function (name, cfg) {
     component.append(cns);
 
     var r = w / 2;
-    // 添加一个底图层
-    ctx.beginPath();
-    ctx.strokeStyle = '#eee';
-    ctx.fillStyle = '#eee';
-    ctx.arc(r, r, r, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.stroke();
+    // // 添加一个底图层
+    // ctx.beginPath();
+    // ctx.strokeStyle = '#eee';
+    // ctx.fillStyle = '#eee';
+    // ctx.arc(r, r, r, 0, 2 * Math.PI);
+    // ctx.fill();
+    // ctx.stroke();
 
 
     // 添加数据层画布
@@ -66,7 +66,7 @@ var H5ComponentPie = function (name, cfg) {
         ctx2.fill();
         // 将上一次的结束角度作为下一次的开始角度
         sAngle = eAngle;
-        ctx2.stroke();
+        // ctx2.stroke();
 
         var text = $('<div class="text"></div>');
         text.text(item[0]);
