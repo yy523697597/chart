@@ -132,22 +132,22 @@ var H5ComponentPie = function (name, cfg) {
         // 通过不断增大系数per，来获得数据层放大的动画
         // 循环100次，此时per=1，动画结束
         var per = 0;
-        for (var k = 0; k < 30; k++) {
+        for (var k = 0; k < 25; k++) {
             setTimeout(function () {
-                per += 0.03;
+                per += 0.04;
                 draw(per);
-            }, k * 30 + 600);
+            }, k * 40 + 600);
         }
     });
 
     // 触发出场动画
     component.on('onLeave', function () {
         var per = 1;
-        for (var k = 0; k < 30; k++) {
+        for (var k = 0; k < 25; k++) {
             setTimeout(function () {
-                per -= 0.03;
+                per -= 0.40;
                 draw(per);
-            }, k * 30);
+            }, k * 40);
         }
     });
 

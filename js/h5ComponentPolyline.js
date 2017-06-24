@@ -88,21 +88,21 @@ var H5ComponentPolyline = function (name, cfg) {
 
 	component.on('onLoad', function () {
 		var per = 0;
-		for (var k = 0; k < 30; k++) {
+		for (var k = 0; k < 25; k++) {
 			setTimeout(function () {
-				per += 0.03;
-				draw(per)
-			}, k * 30 + 600);
+				per += 0.04;
+				draw(per);
+			}, k * 25 + 600);
 		}
 	});
 
 	component.on('onLeave', function () {
 		var per = 1;
-		for (var k = 0; k < 30; k++) {
+		for (var k = 0; k < 25; k++) {
 			setTimeout(function () {
-				per -= 0.03;
-				draw(per)
-			}, k * 30);
+				per -= 0.04;
+				draw(per);
+			}, k * 25);
 		}
 	});
 
