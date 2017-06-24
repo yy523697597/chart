@@ -801,17 +801,17 @@
             "center": true,
             "css": {
                 "opacity": 0,
-                "bottom": "40px",
+                "bottom": "20px",
                 "fontSize": "24px",
                 "color": "#666",
                 "textAlign": "center"
             },
             "animateIn": {
-                "bottom": "100px",
+                "bottom": "50px",
                 "opacity": 1
             },
             "animateOut": {
-                "bottom": "40px",
+                "bottom": "20px",
                 "opacity": 0
             }
         }
