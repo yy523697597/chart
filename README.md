@@ -1,37 +1,10 @@
-## Welcome to GitHub Pages
+## 基于jQuery和fullpage.js的面向移动端的模块化图表应用
+ 
+### 使用jQuery动态生成dom元素，并添加到页面中。使用fullpage.js实现单页面应用。使用ajax从服务器端获取数据。
+ 
+### 使用canvas绘制了折线图，饼图，水平柱图、垂直柱图、散点图、雷达图组件，这些组件都可以复用。
 
-You can use the [editor on GitHub](https://github.com/yy523697597/chart/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### 基于CSS3的transition和animation实现了有层次的加载动画。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yy523697597/chart/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### dom元素的生成均基于json文件中的配置，因此可以很轻松的修改和增添dom元素。
+  
